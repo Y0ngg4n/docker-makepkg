@@ -7,6 +7,7 @@ RUN useradd -m notroot
 
 # Fix alpm error
 RUN mkdir -p /var/lib/pacman
+RUN pacman -Syu
 
 # Generally, refreshing without sync'ing is discouraged, but we've a clean
 # environment here.
