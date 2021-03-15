@@ -6,7 +6,7 @@ COPY run.sh /run.sh
 RUN useradd -m notroot
 
 # Fix alpm error
-mkdir -p /opt/arch/var/lib/pacman
+RUN mkdir -p /opt/arch/var/lib/pacman
 
 # Generally, refreshing without sync'ing is discouraged, but we've a clean
 # environment here.
