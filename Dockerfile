@@ -5,6 +5,9 @@ COPY run.sh /run.sh
 # makepkg cannot (and should not) be run as root:
 RUN useradd -m notroot
 
+# Fix alpm error
+mkdir -p /opt/arch/var/lib/pacman
+
 # Generally, refreshing without sync'ing is discouraged, but we've a clean
 # environment here.
 RUN pacman -Sy --noconfirm archlinux-keyring && \
