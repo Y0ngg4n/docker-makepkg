@@ -1,10 +1,8 @@
 FROM archlinux
 
-COPY run.sh /run.sh
-
-# Fix alpm error
-RUN mkdir -p /var/lib/pacman
 RUN pacman -Syu
+
+COPY run.sh /run.sh
 
 # Generally, refreshing without sync'ing is discouraged, but we've a clean
 # environment here.
