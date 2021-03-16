@@ -20,6 +20,9 @@ WORKDIR /home/notroot
 
 COPY run.sh /run.sh
 
+RUN chown notroot /run.sh
+RUN chmod +x /run.sh
+
 # Auto-fetch GPG keys (for checking signatures):
 RUN mkdir .gnupg && \
     touch .gnupg/gpg.conf && \
