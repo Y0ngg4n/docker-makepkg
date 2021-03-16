@@ -2,8 +2,6 @@ FROM archlinux
 
 RUN pacman -Syu
 
-COPY run.sh /run.sh
-
 # Generally, refreshing without sync'ing is discouraged, but we've a clean
 # environment here.
 RUN pacman -Sy --noconfirm archlinux-keyring && \
@@ -19,6 +17,8 @@ RUN useradd -m notroot
 # Continue execution (and CMD) as notroot:
 USER notroot
 WORKDIR /home/notroot
+
+COPY run.sh /run.sh
 
 # Auto-fetch GPG keys (for checking signatures):
 RUN mkdir .gnupg && \
