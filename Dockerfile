@@ -2,6 +2,15 @@ FROM archlinux
 
 RUN pacman -Syu --noconfirm
 
+COPY run.sh /run.sh
+
+# Fix permissions
+RUN chown notroot /run.sh
+RUN chmod +x /run.sh
+
+# makepkg cannot (and should not) be run as root:
+RUN useradd -m notroot
+
 # Generally, refreshing without sync'ing is discouraged, but we've a clean
 # environment here.
 RUN pacman -Sy --noconfirm archlinux-keyring && \
@@ -11,17 +20,10 @@ RUN pacman -Sy --noconfirm archlinux-keyring && \
 # Allow notroot to run stuff as root (to install dependencies):
 RUN echo "notroot ALL=(ALL) NOPASSWD: ALL" > /etc/sudoers.d/notroot
 
-# makepkg cannot (and should not) be run as root:
-RUN useradd -m notroot
 
 # Continue execution (and CMD) as notroot:
 USER notroot
 WORKDIR /home/notroot
-
-COPY run.sh /run.sh
-
-RUN chown notroot /run.sh
-RUN chmod +x /run.sh
 
 # Auto-fetch GPG keys (for checking signatures):
 RUN mkdir .gnupg && \
