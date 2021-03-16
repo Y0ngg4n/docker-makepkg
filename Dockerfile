@@ -1,6 +1,6 @@
 FROM archlinux
 
-RUN pacman -Syu
+RUN pacman -Syu --noconfirm
 
 # Generally, refreshing without sync'ing is discouraged, but we've a clean
 # environment here.
