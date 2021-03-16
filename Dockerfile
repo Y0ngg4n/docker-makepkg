@@ -4,12 +4,12 @@ RUN pacman -Syu --noconfirm
 
 COPY run.sh /run.sh
 
+# makepkg cannot (and should not) be run as root:
+RUN useradd -m notroot
+
 # Fix permissions
 RUN chown notroot /run.sh
 RUN chmod +x /run.sh
-
-# makepkg cannot (and should not) be run as root:
-RUN useradd -m notroot
 
 # Generally, refreshing without sync'ing is discouraged, but we've a clean
 # environment here.
