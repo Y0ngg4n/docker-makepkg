@@ -9,6 +9,13 @@ else
     DOCKER_MAKEPKG_PATH="$1"
 fi
 
+if [ -z "$2" ]
+  then
+    DOCKER_OUT_PATH="/pkg"
+else
+    DOCKER_OUT_PATH="$2"
+fi
+
 # Make a copy so we never alter the original
 cp -r "$DOCKER_MAKEPKG_PATH" /tmp/pkg
 cd /tmp/pkg
@@ -24,5 +31,5 @@ makepkg -f
 # Store the built package(s). Ensure permissions match the original PKGBUILD.
 if [ -n "$EXPORT_PKG" ]; then
     sudo chown $(stat -c '%u:%g' "$DOCKER_MAKEPKG_PATH"/PKGBUILD) ./*pkg.tar*
-    sudo mv ./*pkg.tar* "$DOCKER_MAKEPKG_PATH"
+    sudo mv ./*pkg.tar* "$DOCKER_OUT_PATH"
 fi
