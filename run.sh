@@ -6,7 +6,6 @@ if [ -z "$1" ]
   then
     DOCKER_MAKEPKG_PATH="/pkg"
 else
-  then
     DOCKER_MAKEPKG_PATH="$1"
 fi
 
