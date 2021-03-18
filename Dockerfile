@@ -36,6 +36,7 @@ RUN git clone https://aur.archlinux.org/yay-bin.git && \
     makepkg --noconfirm --syncdeps --rmdeps --install --clean
 
 # Set to root User again for building pipeline
+USER 0
 
 # create dir (optional)
 RUN mkdir -p /drone/src
