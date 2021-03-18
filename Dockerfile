@@ -35,6 +35,13 @@ RUN git clone https://aur.archlinux.org/yay-bin.git && \
     cd yay-bin && \
     makepkg --noconfirm --syncdeps --rmdeps --install --clean
 
+# Set to root User again for building pipeline
+
+# create dir (optional)
+RUN mkdir -p /drone/src
+
 # Build the package
-WORKDIR /pkg
-CMD /bin/sh /run.sh
+WORKDIR /drone/src
+
+# Define command
+CMD /bin/su -s /bin/sh -c "/run.sh /drone/scr/$DRONE_STEP_NAME $OUTPUT_DIR" notroot
