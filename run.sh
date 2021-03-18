@@ -29,7 +29,7 @@ yay -Sy --noconfirm \
 makepkg -f
 
 # Store the built package(s). Ensure permissions match the original PKGBUILD.
-if [ -n "$EXPORT_PKG" ]; then
+if [ -z "$2" ]; then
     sudo chown $(stat -c '%u:%g' "$DOCKER_MAKEPKG_PATH"/PKGBUILD) ./*pkg.tar*
     sudo mv ./*pkg.tar* "$DOCKER_OUT_PATH"
 fi
