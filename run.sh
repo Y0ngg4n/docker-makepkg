@@ -17,7 +17,7 @@ else
 fi
 
 # Make a copy so we never alter the original
-cp -r "$DOCKER_MAKEPKG_PATH" /tmp/pkg
+cp -rv "$DOCKER_MAKEPKG_PATH" /tmp/pkg
 cd /tmp/pkg
 
 # Install (official repo + AUR) dependencies using yay. We avoid using makepkg
