@@ -18,6 +18,8 @@ fi
 
 REPO_API_URL="$3"
 
+echo "REST API URL: $REPO_API_URL"
+
 # Make a copy so we never alter the original
 cp -rv "$DOCKER_MAKEPKG_PATH" /tmp/pkg
 cd /tmp/pkg
