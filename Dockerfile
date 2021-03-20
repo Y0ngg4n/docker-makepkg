@@ -15,6 +15,7 @@ RUN chmod +x /run.sh
 # environment here.
 RUN pacman -Sy --noconfirm archlinux-keyring && \
     pacman -Sy --noconfirm base-devel git && \
+    pacman -Sy --noconfirm wget curl && \
     pacman -Syu --noconfirm
 
 # Allow notroot to run stuff as root (to install dependencies):
