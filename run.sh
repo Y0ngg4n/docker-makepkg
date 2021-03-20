@@ -25,6 +25,14 @@ cd /tmp/pkg
 yay -Sy --noconfirm \
     $(pacman --deptest $(source ./PKGBUILD && echo ${depends[@]} ${makedepends[@]}))
 
+# Check if exists in Nexus
+PKGNAME=$(cat PKGBUILD | grep pkgname= | cut -d = -f 2)
+PKGVERSION=$(cat PKGBUILD | grep pkgver= | cut -d = -f 2)
+PKKARCH=$(cat PKGBUILD | grep arch= | cut -d = -f 2 | cut -c 3- | rev | cut -c 3- | rev)
+NEXUSPKGNAME="$PKGNAME-$PKGVERSION-$PKKARCH.pkg.tar.zst"
+
+
+
 # Do the actual building
 makepkg -f
 
