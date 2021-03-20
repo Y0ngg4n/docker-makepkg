@@ -22,8 +22,9 @@ echo "Packages existing:"
 cat jq-output
 for k in $(jq -r ".[]" jq-output); do 
     if [ "$k" == "$NEXUSPKGNAME" ]
-        echo "Package allready exists"
-        then exit 0
+      then
+         echo "Package allready exists"
+         exit 0
     fi
 done
 
