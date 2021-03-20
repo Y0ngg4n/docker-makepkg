@@ -16,6 +16,7 @@ else
     DOCKER_OUT_PATH="$2"
 fi
 
+env
 echo "$REPO_API_URL"
 REPO_API_URL="$3"
 
