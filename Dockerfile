@@ -46,4 +46,4 @@ RUN mkdir -p /drone/src
 WORKDIR /drone/src
 
 # Define command
-CMD /bin/su -s /bin/sh -c '/run.sh /drone/src/"$DRONE_STEP_NAME" "$OUTPUT_DIR" "$REPO_API_URL"' notroot
+CMD /bin/su -s /bin/sh -c '/run.sh' notroot
