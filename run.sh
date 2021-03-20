@@ -20,11 +20,6 @@ fi
 cp -rv "$DOCKER_MAKEPKG_PATH" /tmp/pkg
 cd /tmp/pkg
 
-# Install (official repo + AUR) dependencies using yay. We avoid using makepkg
-# -s since it is unable to install AUR dependencies.
-yay -Sy --noconfirm \
-    $(pacman --deptest $(source ./PKGBUILD && echo ${depends[@]} ${makedepends[@]}))
-
 # Check if exists in Nexus
 PKGNAME=$(cat PKGBUILD | grep pkgname= | cut -d = -f 2)
 PKGVERSION=$(cat PKGBUILD | grep pkgver= | cut -d = -f 2)
@@ -41,6 +36,11 @@ for k in $(jq -r ".[]" jq-output); do
         then exit 0
     fi
 done
+
+# Install (official repo + AUR) dependencies using yay. We avoid using makepkg
+# -s since it is unable to install AUR dependencies.
+yay -Sy --noconfirm \
+    $(pacman --deptest $(source ./PKGBUILD && echo ${depends[@]} ${makedepends[@]}))
 
 # Do the actual building
 makepkg -f
