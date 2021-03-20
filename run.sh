@@ -32,7 +32,7 @@ PKKARCH=$(cat PKGBUILD | grep arch= | cut -d = -f 2 | cut -c 3- | rev | cut -c 3
 NEXUSPKGNAME="$PKGNAME-$PKGVERSION-$PKKARCH.pkg.tar.zst"
 
 curl -sSL -k -X GET -G "$REPO_API_URL/assets?repository=oblivion-os" > output
-cat output | jq '.items | map(.downloadUrl)' > jq-output
+cat output | jq '.items | map(.path)' > jq-output
 for k in $(jq -r ".[]" jq-output); do 
     if [ "$k" == "$NEXUSPKGNAME" ]
         then exit 0
