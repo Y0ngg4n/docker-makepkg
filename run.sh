@@ -2,27 +2,6 @@
 
 set -e
 
-if [ -z "$1" ]
-  then
-    DOCKER_MAKEPKG_PATH="/pkg"
-else
-    DOCKER_MAKEPKG_PATH="$1"
-fi
-
-if [ -z "$2" ]
-  then
-    DOCKER_OUT_PATH="/pkg"
-else
-    DOCKER_OUT_PATH="$2"
-fi
-
-if [ -z "$3" ]
-  then
-    REPO_API_URL="$REPO_API_URL"
-else
-    REPO_API_URL="$3"
-fi
-
 echo "$DOCKER_MAKEPKG_PATH"
 echo "$DOCKER_OUT_PATH"
 echo "$REPO_API_URL"
