@@ -33,8 +33,11 @@ NEXUSPKGNAME="$PKGNAME-$PKGVERSION-$PKKARCH.pkg.tar.zst"
 
 curl -sSL -k -X GET -G "$REPO_API_URL/assets?repository=oblivion-os" > output
 cat output | jq '.items | map(.path)' > jq-output
+echo "Packages existing:"
+cat jq-output
 for k in $(jq -r ".[]" jq-output); do 
     if [ "$k" == "$NEXUSPKGNAME" ]
+        echo "Package allready exists"
         then exit 0
     fi
 done
