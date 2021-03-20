@@ -16,12 +16,12 @@ else
     DOCKER_OUT_PATH="$2"
 fi
 
-env
-echo "$REPO_API_URL"
-REPO_API_URL="$3"
-
-echo "$3"
-echo "REST API URL: $REPO_API_URL"
+if [ -z "$3" ]
+  then
+    REPO_API_URL="$REPO_API_URL"
+else
+    REPO_API_URL="$3"
+fi
 
 # Make a copy so we never alter the original
 cp -rv "$DOCKER_MAKEPKG_PATH" /tmp/pkg
