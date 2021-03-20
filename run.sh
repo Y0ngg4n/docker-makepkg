@@ -16,6 +16,8 @@ else
     DOCKER_OUT_PATH="$2"
 fi
 
+REPO_API_URL="$3"
+
 # Make a copy so we never alter the original
 cp -rv "$DOCKER_MAKEPKG_PATH" /tmp/pkg
 cd /tmp/pkg
