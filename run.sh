@@ -23,6 +23,10 @@ else
     REPO_API_URL="$3"
 fi
 
+echo "$DOCKER_MAKEPKG_PATH"
+echo "$DOCKER_OUT_PATH"
+echo "$REPO_API_URL"
+
 # Make a copy so we never alter the original
 cp -rv "$DOCKER_MAKEPKG_PATH" /tmp/pkg
 cd /tmp/pkg
