@@ -16,8 +16,10 @@ else
     DOCKER_OUT_PATH="$2"
 fi
 
+echo "$REPO_API_URL"
 REPO_API_URL="$3"
 
+echo "$3"
 echo "REST API URL: $REPO_API_URL"
 
 # Make a copy so we never alter the original
