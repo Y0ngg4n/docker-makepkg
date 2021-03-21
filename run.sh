@@ -20,8 +20,9 @@ cd /tmp/pkg
 # Check if exists in Nexus
 PKGNAME=$(cat PKGBUILD | grep pkgname= | cut -d = -f 2)
 PKGVERSION=$(cat PKGBUILD | grep pkgver= | cut -d = -f 2)
-PKKARCH=$(cat PKGBUILD | grep arch= | cut -d = -f 2 | cut -c 3- | rev | cut -c 3- | rev)
-NEXUSPKGNAME="$PKGNAME-$PKGVERSION-$PKKARCH.pkg.tar.zst"
+#PKGARCH=$(cat PKGBUILD | grep arch= | cut -d = -f 2 | cut -c 3- | rev | cut -c 3- | rev)
+PKGARCH=x86_64
+NEXUSPKGNAME="$PKGNAME-$PKGVERSION-$PKGARCH.pkg.tar.zst"
 
 curl -sSL -k -X GET -G "$REPO_API_URL/assets?repository=oblivion-os" > output
 cat output | jq '.items | map(.path)' > jq-output
